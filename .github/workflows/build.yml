@@ -24,7 +24,12 @@ jobs:
         cmake-version: '3.25.x'
 
     - name: Configure CMake
+      run: cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -G "MinGW Makefiles"
+      if: runner.os == 'Windows'
+
+    - name: Configure CMake
       run: cmake -B build -S . -DCMAKE_BUILD_TYPE=Release
+      if: runner.os != 'Windows'
 
     - name: Build
       run: cmake --build build --config Release
@@ -57,7 +62,7 @@ jobs:
 
     - name: Configure CMake for Android (ARM64)
       env:
-        ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+        ANDROID_NDK_HOME: ${{ env.ANDROID_NDK_LATEST_HOME }}
       run: |
         cmake -B build-android -S . \
           -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
