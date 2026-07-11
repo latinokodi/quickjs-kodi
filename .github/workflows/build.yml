@@ -45,8 +45,11 @@ jobs:
           build/Release/quickjs*
 
   build-android:
-    name: Build for Android
+    name: Build for Android (${{ matrix.abi }})
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        abi: [armeabi-v7a, arm64-v8a, x86, x86_64]
     steps:
     - uses: actions/checkout@v4
 
@@ -60,11 +63,11 @@ jobs:
       with:
         cmake-version: '3.25.x'
 
-    - name: Configure CMake for Android (ARM64)
+    - name: Configure CMake for Android (${{ matrix.abi }})
       run: |
         cmake -B build-android -S . \
           -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_LATEST_HOME/build/cmake/android.toolchain.cmake \
-          -DANDROID_ABI=arm64-v8a \
+          -DANDROID_ABI=${{ matrix.abi }} \
           -DANDROID_PLATFORM=android-21 \
           -DCMAKE_BUILD_TYPE=Release
 
@@ -74,7 +77,7 @@ jobs:
     - name: Upload Android Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: quickjs-binaries-android-arm64
+        name: quickjs-binaries-android-${{ matrix.abi }}
         path: |
           build-android/qjs*
           build-android/libquickjs*
