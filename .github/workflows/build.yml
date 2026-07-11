@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Set up CMake
-      uses: jwlawson/actions-setup-cmake@v1.13
+      uses: jwlawson/actions-setup-cmake@v2.2
       with:
         cmake-version: '3.25.x'
 
@@ -59,7 +59,7 @@ jobs:
         ndk-version: r25c
 
     - name: Set up CMake
-      uses: jwlawson/actions-setup-cmake@v1.13
+      uses: jwlawson/actions-setup-cmake@v2.2
       with:
         cmake-version: '3.25.x'
 

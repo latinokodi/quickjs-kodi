@@ -180,7 +180,7 @@ jobs:
         with:
           ndk-version: r25c
       - name: Set up CMake
-        uses: jwlawson/actions-setup-cmake@v1.13
+        uses: jwlawson/actions-setup-cmake@v2.2
         with:
           cmake-version: '3.25.x'
       - name: Configure CMake for Android (${{ matrix.abi }})
