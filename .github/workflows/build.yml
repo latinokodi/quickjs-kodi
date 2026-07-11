@@ -35,7 +35,7 @@ jobs:
       run: cmake --build build --config Release
 
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: quickjs-binaries-${{ matrix.os }}
         path: |
@@ -75,7 +75,7 @@ jobs:
       run: cmake --build build-android --config Release
 
     - name: Upload Android Artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: quickjs-binaries-android-${{ matrix.abi }}
         path: |
