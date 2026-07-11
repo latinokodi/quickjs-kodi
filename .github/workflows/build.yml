@@ -75,4 +75,8 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: quickjs-binaries-android-arm64
-        path: build-android/libquickjs*
+        path: |
+          build-android/qjs*
+          build-android/libquickjs*
+          build-android/Release/qjs*
+          build-android/Release/quickjs*
